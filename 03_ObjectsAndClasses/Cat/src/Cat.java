@@ -3,17 +3,18 @@ public class Cat
 {
     private double originWeight;
     private double weight;
-
     private double minWeight;
     private double maxWeight;
+    private double sumAllFood;
+    public static int count;
 
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
-
+        minWeight = 1000.0;//grams
+        maxWeight = 9000.0;//grams
+        count++;
     }
 
     public void meow()
@@ -52,4 +53,10 @@ public class Cat
             return "Playing";
         }
     }
+
+    // Static method (Getter) with return value count
+    public static int getCount()
+    {
+        return count;
+    };
 }

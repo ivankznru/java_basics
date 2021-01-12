@@ -14,6 +14,7 @@ public class Loader {
         Cat lucky = new Cat();
         System.out.println("Lucky has weight:" + lucky.getWeight());
 
+        System.out.println("Numbers of cats are:" + Cat.getCount());
 
 // Fed Murka with 100 of chicken in the morning
         murka.feed(100.0);
@@ -23,22 +24,33 @@ public class Loader {
         System.out.println("Lucky has weight after morning feeding:" + lucky.getWeight());
 
 // Fed Boris with a lot of beans.....Oh No. It has exploded. Poor Boris.
-        while (!boris.getStatus().equals("Exploded"))
-        {
+        while (!boris.getStatus().equals("Exploded")) {
             boris.feed(300.0);
         }
         System.out.println("Boris has weight after morning feeding:" + boris.getWeight());
         System.out.println("Boris has status after morning feeding:" + boris.getStatus());
 
 // Unlucky Vasja lost his weight to death after made a lof of meowing this evening
-        while (!vasja.getStatus().equals("Dead"))
-        {
+        while (!vasja.getStatus().equals("Dead")) {
             vasja.meow();
         }
-        System.out.println("Vasja lost his weight after meowing this evening:" + vasja.getWeight());
-        System.out.println("Vasja has status after meowing this evening :" + vasja.getStatus());
-        System.out.println("RIP Vasja and Boris. We will miss you.");
-
-
+        System.out.println("Vasja has status after made a lof of meowing this evening:" + vasja.getStatus());
+ //Check if the cat was exploded or dead
+        if ((murka.getStatus().equals("Exploded")) | (murka.getStatus().equals("Dead"))) {
+            Cat.count--;
+        }
+        if ((vasja.getStatus().equals("Exploded")) | (vasja.getStatus().equals("Dead"))) {
+            Cat.count--;
+        }
+        if ((boris.getStatus().equals("Exploded")) | (boris.getStatus().equals("Dead"))) {
+            Cat.count--;
+        }
+        if ((spring.getStatus().equals("Exploded")) | (spring.getStatus().equals("Dead"))) {
+            Cat.count--;
+        }
+        if ((lucky.getStatus().equals("Exploded")) | (lucky.getStatus().equals("Dead"))) {
+            Cat.count--;
+        }
+        System.out.println("Numbers of cats are:" + Cat.getCount());
     }
 }
