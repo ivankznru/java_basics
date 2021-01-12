@@ -22,13 +22,17 @@ public class Cat
     }
 
     public void feed(Double amount)
+
     {
         weight = weight + amount;
+        sumAllFood=sumAllFood+amount;
     }
 
     public void drink(Double amount)
+
     {
         weight = weight + amount;
+        sumAllFood=sumAllFood+amount;
     }
 
     public Double getWeight()
@@ -51,14 +55,17 @@ public class Cat
             return "Playing";
         }
     }
-    // Method with return value double sumAllFood
-    public double sumAllFood(double amount) {
-        sumAllFood = sumAllFood + amount;
+
+    // Method (Getter) with return value double sumAllFood
+    public double getSumAllFood() {
+
         return sumAllFood;
     }
-// Method without return value
+    // Method without return value
     public void pee() {
         weight = weight - 20;
         System.out.println("Cat is peeing now");
     }
+
+
 }
