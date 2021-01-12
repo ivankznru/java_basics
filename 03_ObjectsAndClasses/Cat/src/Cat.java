@@ -3,15 +3,16 @@ public class Cat
 {
     private double originWeight;
     private double weight;
+
     private double minWeight;
     private double maxWeight;
-    private double sumAllFood;
+
     public Cat()
     {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;//grams
-        maxWeight = 9000.0;//grams
+        minWeight = 1000.0;
+        maxWeight = 9000.0;
 
     }
 
@@ -22,17 +23,13 @@ public class Cat
     }
 
     public void feed(Double amount)
-
     {
         weight = weight + amount;
-        sumAllFood=sumAllFood+amount;
     }
 
     public void drink(Double amount)
-
     {
         weight = weight + amount;
-        sumAllFood=sumAllFood+amount;
     }
 
     public Double getWeight()
@@ -55,17 +52,4 @@ public class Cat
             return "Playing";
         }
     }
-
-    // Method (Getter) with return value double sumAllFood
-    public double getSumAllFood() {
-
-        return sumAllFood;
-    }
-    // Method without return value
-    public void pee() {
-        weight = weight - 20;
-        System.out.println("Cat is peeing now");
-    }
-
-
 }

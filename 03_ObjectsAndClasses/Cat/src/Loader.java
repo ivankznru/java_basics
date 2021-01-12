@@ -1,26 +1,44 @@
 
 public class Loader {
-    //Fields
 
     public static void main(String[] args) {
+// Created five cats and got theirs weights
+        Cat murka = new Cat();
+        System.out.println("Murka has weight:" + murka.getWeight());
+        Cat vasja = new Cat();
+        System.out.println("Vasja has weight:" + vasja.getWeight());
+        Cat boris = new Cat();
+        System.out.println("Boris has weight:" + boris.getWeight());
+        Cat spring = new Cat();
+        System.out.println("Spring has weight:" + spring.getWeight());
+        Cat lucky = new Cat();
+        System.out.println("Lucky has weight:" + lucky.getWeight());
 
 
-// Created one cat (object of class Cat)
-        Cat snowFlake = new Cat();
-        // Fed Snowflake with 150.0 grams of fish.
+// Fed Murka with 100 of chicken in the morning
+        murka.feed(100.0);
+        System.out.println("Murka has weight after morning feeding:" + murka.getWeight());
+// Fed Lucky with 300 of fish in the morning
+        lucky.feed(300.0);
+        System.out.println("Lucky has weight after morning feeding:" + lucky.getWeight());
 
-        snowFlake.feed(150.0);//параметр нужно вводить в граммах
-        // Fed Snowflake with 97.0 ml of the milk after 1 hour //
+// Fed Boris with a lot of beans.....Oh No. It has exploded. Poor Boris.
+        while (!boris.getStatus().equals("Exploded"))
+        {
+            boris.feed(300.0);
+        }
+        System.out.println("Boris has weight after morning feeding:" + boris.getWeight());
+        System.out.println("Boris has status after morning feeding:" + boris.getStatus());
 
-        snowFlake.drink(100.0); // параметр нужно вводить в граммах 97 мл молоко примерно 100 гр
-        System.out.println("Snowflake has weight:"+ snowFlake.getWeight());
+// Unlucky Vasja lost his weight to death after made a lof of meowing this evening
+        while (!vasja.getStatus().equals("Dead"))
+        {
+            vasja.meow();
+        }
+        System.out.println("Vasja lost his weight after meowing this evening:" + vasja.getWeight());
+        System.out.println("Vasja has status after meowing this evening :" + vasja.getStatus());
+        System.out.println("RIP Vasja and Boris. We will miss you.");
 
-        // Snowflake has peed several times during the day
-        snowFlake.pee();
-        snowFlake.pee();
-        snowFlake.pee();
-        snowFlake.pee();
-        System.out.println("Snowflake has weight after several peeing:"+ snowFlake.getWeight());
-        System.out.println("Snowflake has eaten " + snowFlake.getSumAllFood() +" grams of the food");
+
     }
 }
