@@ -20,7 +20,19 @@ public class Main {
    */
 
   public static int sumDigits(Integer number) {
-    //@TODO: write code here and delete TODO line
-    return 0;
+    int sumDigits=0;
+    if (number == null) {
+      sumDigits = -1;
+    } else {
+      String strNumber = number.toString();
+      for (int i = 0; i < strNumber.length(); i++) {
+
+        String c = String.valueOf(strNumber.charAt(i));
+        int digit = Integer.parseInt(c);
+        sumDigits += digit;
+      }
+    }
+    return sumDigits;
   }
+
 }
