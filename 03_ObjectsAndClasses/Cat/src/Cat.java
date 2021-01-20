@@ -2,22 +2,25 @@
 public class Cat {
     private double originWeight;
     private double weight;
-    private double minWeight;
-    private double maxWeight;
+    // private double minWeight;
+    // private double maxWeight;
     private static int count;
     private boolean isAlive;
     private double sumAllFood;
-    private static final int EYES_COUNT = 2;
-    private static final double MIN_WEIGHT = 1000;
-    private static final double MAX_WEIGHT = 9000;
-    private String colour = "Окрас не определен";
+
+
+    private final int EYES_COUNT = 2;
+
+
+    private final double MIN_WEIGHT = 1000;
+    private final double MAX_WEIGHT = 9000;
+    private CatColour colour = CatColour.BLACK;
+
 
     // Конструктор для генерации кошек со случайным весом
     public Cat() {
         this.weight = 1500.0 + 3000.0 * Math.random();
         originWeight = this.weight;
-        minWeight = 1000.0;//grams
-        maxWeight = 9000.0;//grams
         count++;
     }
 
@@ -26,8 +29,6 @@ public class Cat {
         //  this(that.getWeight(), that.isAlive(), that.minWeight, that.maxWeight);
         weight = that.getWeight();
         isAlive = that.isAlive();
-        minWeight = that.minWeight;
-        maxWeight = that.maxWeight;
         setColour(that.getColour());
         if (isAlive) {
             count++;
@@ -40,18 +41,18 @@ public class Cat {
         weight = kittenWeight;
     }
 
-    public String getColour() {
-        return colour;
+    public void setColour(CatColour colour) {
+        this.colour = colour;
     }
 
-    public void setColour(String colour) {
-        this.colour = colour;
+    public CatColour getColour() {
+        return colour;
     }
 
     public void meow() {
         if (isAlive()) {
             weight = weight - 1;
-            if (weight < minWeight) {
+            if (weight < MIN_WEIGHT) {
                 count = count - 1;
             }
             System.out.println("Meow");
@@ -65,7 +66,7 @@ public class Cat {
         if (isAlive()) {
             weight = weight + amount;
             sumAllFood = sumAllFood + amount;
-            if (weight > maxWeight) {
+            if (weight > MAX_WEIGHT) {
                 count = count - 1;
             }
         } else {
@@ -78,7 +79,7 @@ public class Cat {
         if (isAlive()) {
             weight = weight + amount;
             sumAllFood = sumAllFood + amount;
-            if (weight > maxWeight) {
+            if (weight > MAX_WEIGHT) {
                 count = count - 1;
             }
         } else {
@@ -94,9 +95,9 @@ public class Cat {
 
     public String getStatus() {
 
-        if (weight < minWeight) {
+        if (weight < MIN_WEIGHT) {
             return "Dead";
-        } else if (weight > maxWeight) {
+        } else if (weight > MAX_WEIGHT) {
             return "Exploded";
         } else if (weight > originWeight) {
             return "Sleeping";
@@ -108,7 +109,7 @@ public class Cat {
     public void pee() {
         if (isAlive()) {
             weight = weight - 20;
-            if (weight < minWeight) {
+            if (weight < MIN_WEIGHT) {
                 count = count - 1;
             }
             System.out.println("Cat is peeing now");
@@ -124,7 +125,7 @@ public class Cat {
 
 
     public boolean isAlive() {
-        if ((weight > maxWeight) | (minWeight > weight)) {
+        if ((weight > MAX_WEIGHT) | (MIN_WEIGHT > weight)) {
             isAlive = false;
         } else {
             isAlive = true;
@@ -132,6 +133,17 @@ public class Cat {
         return isAlive;
     }
 
+    public double getMIN_WEIGHT() {
+        return MIN_WEIGHT;
+    }
+
+    public double getMAX_WEIGHT() {
+        return MAX_WEIGHT;
+    }
+
+    public int getEYES_COUNT() {
+        return EYES_COUNT;
+    }
 
     public static int getCount() {
 
