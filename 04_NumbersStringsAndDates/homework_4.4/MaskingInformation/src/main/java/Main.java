@@ -5,9 +5,9 @@ public class Main {
     }
 
     public static String searchAndReplaceDiamonds(String text, String placeholder) {
-        text.trim();
+     //   text.trim();
        text.length();
-       placeholder.trim();
+    //   placeholder.trim();
        placeholder.length();
 
        String firstPart =" ";
@@ -18,7 +18,12 @@ public class Main {
        int secondLess = text.lastIndexOf('<');
        int secondMore = text.lastIndexOf('>');
 
-       if (firstLess>0 & firstMore>0 & firstLess>(text.length()-secondLess+2) ){
+       String checkSecondLess = text.substring(firstLess+1, text.length());
+       int checkLess =checkSecondLess.indexOf('<') ;
+       String checkSecondMore = text.substring(firstMore+1, text.length());
+       int checkMore =checkSecondMore.indexOf('>') ;
+
+       if (firstLess>0 & firstMore>0 & checkLess>0 & checkMore >0 ){
             firstPart = text.substring(0,firstLess );
             secondPart = text.substring(firstMore+1, secondLess);
            thirdPart= text.substring( secondMore+1,text.length());
@@ -26,7 +31,7 @@ public class Main {
 
         }
        if
-       (firstLess>0 & firstMore>0 & firstLess<=(text.length()-secondLess+2)) {
+       (firstLess>0 & firstMore>0 & checkLess<0 & checkMore <0 ) {
             firstPart = text.substring(0,firstLess );
             secondPart = text.substring(firstMore+1, text.length());
             text = firstPart + placeholder + secondPart;
