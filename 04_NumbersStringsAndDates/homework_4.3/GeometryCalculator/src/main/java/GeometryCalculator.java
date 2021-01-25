@@ -1,36 +1,30 @@
 public class GeometryCalculator {
     // метод должен использовать абсолютное значение radius
     public static double getCircleSquare(double radius) {
-        double circleSquare = Math.PI * Math.abs(radius * radius);
-        return circleSquare;
+
+        return Math.PI * Math.abs(radius * radius);
     }
 
     // метод должен использовать абсолютное значение radius
     public static double getSphereVolume(double radius) {
-        double sphereVolume = 4.00 / 3.00 * (Math.PI * Math.abs(radius*radius*radius));
-        return sphereVolume;
+
+        return  4.00 / 3.00 * (Math.PI * Math.pow(Math.abs(radius),3));
     }
 
     public static boolean isTrianglePossible(double a, double b, double c) {
-        boolean trianglePossible;
-        if ((a > 0.0) & (b > 0.0) & (c > 0.0) & (a + b > c) & (a + c > b) & (b + c > a)) {
-            trianglePossible = true;
-        } else {
-            trianglePossible = false;
-        } ;
-        return trianglePossible;
+
+        var maxSide = Math.max(a, Math.max(b,c));
+       return (a + b + c) - maxSide > maxSide;
+
     }
 
     // перед расчетом площади рекомендуется проверить возможен ли такой треугольник
     // методом isTrianglePossible, если невозможен вернуть -1.0
     public static double getTriangleSquare ( double a, double b, double c){
-        double triangleSquare;
-        if ( isTrianglePossible(a,b,c)){
-            double p = (a + b + c)/2.0;
-            triangleSquare = Math.sqrt(p * (p-a) * (p-b) * (p-c));
-        }
-        else {  triangleSquare= -1.0;}
-        return triangleSquare;
+
+        var p = (a + b + c)/2.0;
+        return    isTrianglePossible(a,b,c) ? Math.sqrt(p * (p-a) * (p-b) * (p-c)) : -1.0;
+
     }
 }
 
