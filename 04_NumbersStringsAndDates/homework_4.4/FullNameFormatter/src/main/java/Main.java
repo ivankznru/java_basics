@@ -1,14 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
-private static final int CODE_SPACE=32;
-private static final int CODE_RUS_LOWER_WORD_MAX=1103;
-private static final int CODE_RUS_LOWER_WORD_MIN=1072;
-private static final int CODE_ENG_LOWER_WORD_MAX=122;
-private static final int CODE_ENG_LOWER_WORD_MIN=97;
-private static final int CODE_RUS_UPPER_WORD_MAX=1071;
-private static final int CODE_RUS_UPPER_WORD_MIN=1040;
-    private static final int CODE_DASH=45;
+    private static final int CODE_SPACE = 32;
+    private static final int CODE_RUS_LOWER_WORD_MAX = 1103;
+    private static final int CODE_RUS_UPPER_WORD_MIN = 1040;
+    private static final int CODE_DASH = 45;
 
     public static void main(String[] args) {
         String surName = " ";
@@ -19,7 +15,6 @@ private static final int CODE_RUS_UPPER_WORD_MIN=1040;
         boolean hasMiddleName = false;
         boolean hasWhiteSpace = false;
         boolean hasError = true;
-
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
@@ -34,7 +29,7 @@ private static final int CODE_RUS_UPPER_WORD_MIN=1040;
                 char c = input.charAt(i);
                 int a = (int) c;
 
-                if ((a >= CODE_RUS_UPPER_WORD_MIN) & (a <= CODE_RUS_LOWER_WORD_MAX | (a == CODE_SPACE) | (a == CODE_DASH))) {
+                if ((a >= CODE_RUS_UPPER_WORD_MIN) & (a <= CODE_RUS_LOWER_WORD_MAX) | (a == CODE_SPACE) | (a == CODE_DASH)) {
                     if (!hasSurName) {
                         surName = surName + String.valueOf(c);
                         if (a == CODE_SPACE) {
