@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
+private static final int CODE_SPACE=32;
+private static final int CODE_RUS_LOWER_WORD_MAX=1103;
+private static final int CODE_RUS_LOWER_WORD_MIN=1072;
+private static final int CODE_ENG_LOWER_WORD_MAX=122;
+private static final int CODE_ENG_LOWER_WORD_MIN=97;
+private static final int CODE_RUS_UPPER_WORD_MAX=1071;
+private static final int CODE_RUS_UPPER_WORD_MIN=1040;
+    private static final int CODE_DASH=45;
 
     public static void main(String[] args) {
         String surName = " ";
@@ -11,6 +19,7 @@ public class Main {
         boolean hasMiddleName = false;
         boolean hasWhiteSpace = false;
         boolean hasError = true;
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
@@ -25,31 +34,31 @@ public class Main {
                 char c = input.charAt(i);
                 int a = (int) c;
 
-                if ((a >= 1040) & (a <= 1103) | (a == 32) | (a == 45)) {
+                if ((a >= CODE_RUS_UPPER_WORD_MIN) & (a <= CODE_RUS_LOWER_WORD_MAX | (a == CODE_SPACE) | (a == CODE_DASH))) {
                     if (!hasSurName) {
                         surName = surName + String.valueOf(c);
-                        if (a == 32) {
+                        if (a == CODE_SPACE) {
                             hasSurName = true;
                             hasWhiteSpace = true;
                         }
                     }
                     if ((!hasName) & (hasSurName)) {
-                        if (!(a == 32)) {
+                        if (!(a == CODE_SPACE)) {
                             hasWhiteSpace = false;
                         }
                         name = name + String.valueOf(c);
-                        if ((a == 32) & (hasWhiteSpace == false)) {
+                        if ((a == CODE_SPACE) & (hasWhiteSpace == false)) {
                             hasName = true;
                             hasWhiteSpace = true;
                         }
                     }
                     if ((hasName) & (hasSurName) & (!hasMiddleName)) {
-                        if (!(a == 32)) {
+                        if (!(a == CODE_SPACE)) {
                             hasWhiteSpace = false;
                         }
                         middleName = middleName + String.valueOf(c);
                         hasError = false;
-                        if ((a == 32) & (hasWhiteSpace == false)) {
+                        if ((a == CODE_SPACE) & (hasWhiteSpace == false)) {
                             hasMiddleName = true;
                             hasError = false;
                             hasWhiteSpace = true;
