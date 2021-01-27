@@ -10,8 +10,14 @@ public class Main {
       if (input.equals("0")) {
         break;
       }
-      //TODO:напишите ваш код тут, результат вывести в консоль.
-      //При невалидном ФИО вывести в консоль: Введенная строка не является ФИО
+      String[] input = input.split("\\''");
+      for (int i = 0; i < words.length; i++) {
+        final String English_WORDS = "[a-zA-Z]";
+        var isEnglishWord = words.equals(English_WORDS);
+        s1 = isEnglishWord ? words[i] : s;
+      input.trim();
+     String[] s = input.split("\\s+",3);
+      System.out.println( s );
     }
   }
 
