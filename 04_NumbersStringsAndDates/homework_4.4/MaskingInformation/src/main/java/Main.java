@@ -5,40 +5,20 @@ public class Main {
     }
 
     public static String searchAndReplaceDiamonds(String text, String placeholder) {
-     //   text.trim();
-       text.length();
-    //   placeholder.trim();
-       placeholder.length();
 
-       String firstPart =" ";
-       String secondPart=" ";
-       String thirdPart=" ";
-       int firstLess =text.indexOf('<');
-       int firstMore =text.indexOf('>');
-       int secondLess = text.lastIndexOf('<');
-       int secondMore = text.lastIndexOf('>');
+        int indexFirst = text.indexOf('<');
+        int indexSecond = text.indexOf('>');
 
-       String checkSecondLess = text.substring(firstLess+1, text.length());
-       int checkLess =checkSecondLess.indexOf('<') ;
-       String checkSecondMore = text.substring(firstMore+1, text.length());
-       int checkMore =checkSecondMore.indexOf('>') ;
 
-       if (firstLess>0 & firstMore>0 & checkLess>0 & checkMore >0 ){
-            firstPart = text.substring(0,firstLess );
-            secondPart = text.substring(firstMore+1, secondLess);
-           thirdPart= text.substring( secondMore+1,text.length());
-           text= firstPart + placeholder + secondPart + placeholder +thirdPart;
-
+        if (indexFirst > 0 && indexSecond > 0 && text.length() - text.lastIndexOf('<') == text.length() - indexFirst) {
+            text = text.substring(0, indexFirst) + placeholder + text.substring(indexSecond + 1, text.length());
+            return text;
+        } else if (indexFirst > 0 && indexSecond > 0 && text.length() - text.lastIndexOf('<') != text.length() - indexFirst) {
+            text = text.substring(0, indexFirst) + placeholder + text.substring(indexSecond + 1, text.lastIndexOf('<')) + placeholder + text.substring(text.lastIndexOf('>')+1, text.length());
+            return text;
+        } else {
+            return text;
         }
-       if
-       (firstLess>0 & firstMore>0 & checkLess<0 & checkMore <0 ) {
-            firstPart = text.substring(0,firstLess );
-            secondPart = text.substring(firstMore+1, text.length());
-            text = firstPart + placeholder + secondPart;
-
-        };
-        return text;
-
     }
 }
 
