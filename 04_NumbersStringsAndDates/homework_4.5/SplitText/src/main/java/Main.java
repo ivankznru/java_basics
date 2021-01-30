@@ -6,7 +6,6 @@ public class Main {
 
   public static String splitTextInToWords(String text) {
     String splitWord = "";
-
     text = text.replaceAll("[^a-zA-Z’]", "\r");
     text = text.replaceAll("\\s+", "\r");
      text = text.replaceAll("\\s+$", "");
