@@ -57,7 +57,7 @@ public class Cat {
             }
             System.out.println("Meow");
         } else {
-            System.out.println("Кошка мертва и не может мяукать");
+            System.out.println("Cat is dead and can not meow");
         }
     }
 
@@ -70,7 +70,7 @@ public class Cat {
                 count = count - 1;
             }
         } else {
-            System.out.println("Кошка мертва и не может есть");
+            System.out.println("Cat is dead and can not eat");
         }
 
     }
@@ -83,7 +83,7 @@ public class Cat {
                 count = count - 1;
             }
         } else {
-            System.out.println("Кошка мертва и не может пить");
+            System.out.println("Cat is dead and can not drink");
         }
     }
 
@@ -114,7 +114,7 @@ public class Cat {
             }
             System.out.println("Cat is peeing now");
         } else {
-            System.out.println("Кошка мертва и не может ходить в туалет");
+            System.out.println("Cat ia dead and can not pee");
         }
     }
 
