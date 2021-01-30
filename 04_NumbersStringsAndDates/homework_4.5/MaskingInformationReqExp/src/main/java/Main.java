@@ -6,17 +6,17 @@ public class Main {
 
     public static String searchAndReplaceDiamonds(String text, String placeholder) {
 
-    if (text.matches("(.+<.+>?.?+)") && !text.matches("(.+<.+>?.?+<.+>?.?+)")) {
-            text =text.replaceAll("<.+>",placeholder);
+  if (text.matches("(.+<.+> ?.+)") || text.matches("(.+<.+>)")) {
+          text =text.replaceAll("<.*?>",placeholder); //   "<.+>"-жадный
+                                                            // <.*?> - ленивый
             return text;
         }
-        //     boolean b = text.matches("(.+<.+>.+?<.+>?.?+)");
 
-     if (text.matches("(.+<.+>?.?+<.+>?.?+)")){
-            text =text.replaceAll("<d+>",placeholder);
-            return text;
-        }
-   String[] a =text.split(">");
+   //  if (text.matches("(.+<.+> ?.+? <.+> ?.+)")){
+     //       text =text.replaceAll("<.*?>",placeholder);
+     //       return text;
+      //  }
+
 
         return text;
     }
