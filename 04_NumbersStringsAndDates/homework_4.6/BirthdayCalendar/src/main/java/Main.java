@@ -1,31 +1,54 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
+
 public class Main {
+
 
     public static void main(String[] args) {
 
-        int day = 29;
-        int month = 01;
-        int year = 2021;
+        int day = 19;
+        int month = 10;
+        int year = 1990;
 
-        System.out.println(collectBirthdays(year, month, day));
 
     }
 
     public static String collectBirthdays(int year, int month, int day) {
-        String collectBirthdays=" ";
-        Calendar currentDay = new GregorianCalendar();
-        Calendar birthDay = new GregorianCalendar(year, month, day);
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.-E");
+        String collectBirthdays = " ";
+        Calendar calendar = Calendar.getInstance();
 
-        while (dateFormat.format(birthDay.getTime()).equals(dateFormat.format(currentDay.getTime()))) {
+        Calendar currentDay = new GregorianCalendar(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-            birthDay.add(Calendar.DAY_OF_MONTH, 1);
-            collectBirthdays= dateFormat.format(birthDay.getTime());
+        Calendar birthDay = new GregorianCalendar(year, month - 1, day);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy - E", Locale.US);
+
+
+        if (currentDay.getTime().before(birthDay.getTime())) {
+            collectBirthdays = "";
         }
-        return collectBirthdays;
+        if (currentDay.getTime().equals(birthDay.getTime())) {
+            collectBirthdays = 0 + " - " + dateFormat.format(birthDay.getTime());
+        }
+        if (currentDay.getTime().after(birthDay.getTime())) {
+            String collectBirthdays1 = "";
+            collectBirthdays = 0 + " - " + dateFormat.format(birthDay.getTime());
+            birthDay.add(Calendar.YEAR, 1);
+            if (currentDay.getTime().equals(birthDay.getTime())) {
+                collectBirthdays1 = 1 + " - " + dateFormat.format(birthDay.getTime());
+                collectBirthdays = collectBirthdays + System.lineSeparator() + collectBirthdays1;
+            }
 
+        }
+
+        return collectBirthdays;
     }
 }
+
+
+
