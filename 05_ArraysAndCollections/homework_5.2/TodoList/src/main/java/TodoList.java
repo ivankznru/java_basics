@@ -1,29 +1,47 @@
 import java.util.ArrayList;
 
 public class TodoList {
+ArrayList<String>todoList= new ArrayList<>();
 
-    public void add(String todo) {
-        // TODO: добавьте переданное дело в конец списка
-    }
+        public void add(String todo) {
+            todoList.add(todo);
+            System.out.println("Добавлено дело: "+ todo );
 
-    public void add(int index, String todo) {
-        // TODO: добавьте дело на указаный индекс,
-        //  проверьте возможность добавления
-    }
+        }
 
-    public void edit(String todo, int index) {
-        // TODO: заменить дело на index переданным todo индекс,
-        //  проверьте возможность изменения
-    }
+        public void add(int index, String todo) {
+            if  (todoList.size()+1==index) {
+                todoList.add(index-1, todo);
+                System.out.println("Добавлено дело: "+ todo );
+            }
+            if  (todoList.size()>index) {
+                todoList.add(index, todo);}
+                System.out.println("Добавлено дело: "+ todo );
+        }
 
-    public void delete(int index) {
-        // TODO: удалить дело находящееся по переданному индексу,
-        //  проверьте возможность удаления дела
-    }
+        public void edit(String todo, int index) {
+            if  (todoList.size()>index) {
+                System.out.println( " Дело : "+ todoList.get(index) + ": заменено на : " + todo );
+                todoList.set(index,todo);
 
-    public ArrayList<String> getTodos() {
-        // TODO: вернуть список дел
-        return new ArrayList<>();
-    }
+            }
+        }
 
+        public void delete(int index) {
+
+            if  (todoList.size() > index){
+                System.out.println ("Дело: "+todoList.get(index) + ":удалено");
+                todoList.remove(index);
+
+            }
+            else{System.out.println("Дело с таким номером не существует");}
+
+        }
+
+        public ArrayList<String> getTodos() {
+for (int i =0 ; i< todoList.size();i++ ){
+    System.out.println(i+" - "+ todoList.get(i));
 }
+   return  todoList;
+        }
+    }
