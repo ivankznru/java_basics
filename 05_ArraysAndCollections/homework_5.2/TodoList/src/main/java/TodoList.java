@@ -39,9 +39,7 @@ ArrayList<String>todoList= new ArrayList<>();
         }
 
         public ArrayList<String> getTodos() {
-for (int i =0 ; i< todoList.size();i++ ){
-    System.out.println(i+" - "+ todoList.get(i));
-}
-   return  todoList;
+            todoList = this.todoList;
+        return  todoList;
         }
     }

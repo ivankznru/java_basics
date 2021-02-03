@@ -24,7 +24,11 @@ public class Main {
 
             }
             if (input.matches("LIST")) {
-                todoList.getTodos();
+
+                for (int i =0 ; i< todoList.getTodos().size();i++ ){
+                    System.out.println(i+" - "+ todoList.getTodos().get(i));
+                }
+
             }
             if (input.matches("^EDIT\\s[0-9].*")) {
             int index = Integer.parseInt(input.replaceAll("[^0-9]", "").trim());
