@@ -2,8 +2,39 @@ import java.util.Scanner;
 
 public class Main {
     public static final String WRONG_EMAIL_ANSWER = "Неверный формат email";
-    
-    /* TODO:
+    private static EmailList emailList = new EmailList();
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+
+            input.trim();
+
+
+       if (input.matches("^ADD\\s.*")) {
+
+             emailList.add(input.replaceAll("ADD", "").trim());
+
+           }
+
+            if (input.matches("^LIST\\s?")) {
+                for (int i = 0; i < emailList.getSortedEmails().size(); i++) {
+                    System.out.println(emailList.getSortedEmails().get(i));
+                }
+
+
+            }
+        }
+    }
+}
+
+/* TODO:
         Пример вывода списка Email, после ввода команды LIST в консоль:
         test@test.com
         hello@mail.ru
@@ -16,18 +47,3 @@ public class Main {
         Пример вывода сообщения об ошибке при неверном формате Email:
         "Неверный формат email"
     */
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        while (true) {
-            String input = scanner.nextLine();
-            if (input.equals("0")) {
-                break;
-            }
-            
-            //TODO: write code here
-            
-        }
-    }
-}
