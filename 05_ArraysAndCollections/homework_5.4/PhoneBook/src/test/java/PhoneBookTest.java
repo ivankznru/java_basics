@@ -38,7 +38,7 @@ class PhoneBookTest {
     @Test
     @DisplayName("Передано пустая строка в телефоне абонента")
     void addEmptyName() {
-        phoneBook.addContact("", "Маша");
+        phoneBook.addContact(" ", "Маша");
         assertEquals(Collections.emptySet(), phoneBook.getAllContacts());
     }
 
