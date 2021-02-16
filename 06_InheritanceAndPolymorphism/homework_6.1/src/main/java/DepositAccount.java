@@ -6,7 +6,7 @@ public class DepositAccount extends BankAccount {
     private final int NOT_TO_TAKE_PERIOD= 1;// ONE MONTH;
     private LocalDate lastIncome;
 
-    public void setLastIncome(LocalDate lastIncome) {
+    protected void setLastIncome(LocalDate lastIncome) {
         this.lastIncome = lastIncome;
     }
     protected LocalDate getLastIncome()
