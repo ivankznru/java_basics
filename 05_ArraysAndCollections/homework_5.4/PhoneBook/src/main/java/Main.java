@@ -4,9 +4,12 @@ import java.util.*;
 public class Main {
 
 
+
+
     public static void main(String[] args) {
 
 
+        
         PhoneBook phoneBook = new PhoneBook();
         Scanner scanner = new Scanner(System.in);
 
@@ -30,14 +33,14 @@ public class Main {
                     continue;
                 }
 
-                if (!PhoneBook.isPhoneExist(phoneBook.phoneBookLists, input)) {
+                if (!PhoneBook.isPhoneExist(phoneBook.getPhoneBookLists(), input)) {
 
                     System.out.println("Такого номера в телефонной книге нет");
                     System.out.println("Введите имя абонента для номера " + input);
                     String name = scanner.nextLine();
-                    if (phoneBook.phoneBookLists.containsKey(name)) {
+                    if (phoneBook.getPhoneBookLists().containsKey(name)) {
 
-                        phoneBook.phoneBookLists.put(name, phoneBook.phoneBookLists.get(name) + "," + input);
+                        phoneBook.getPhoneBookLists().put(name, phoneBook.getPhoneBookLists().get(name) + "," + input);
                         System.out.println("К абоненту " + name + ": добавлен телефон: " + input);
                         continue;
                     } else {
@@ -58,14 +61,14 @@ public class Main {
             if (PhoneBook.isCorrectName(input)) {
 
 
-                if (phoneBook.getAllContacts().isEmpty() | (!phoneBook.phoneBookLists.containsKey(input))) {
+                if (phoneBook.getAllContacts().isEmpty() | (!phoneBook.getPhoneBookLists().containsKey(input))) {
                     System.out.println("Такого имени в телефонной книге нет.");
                     System.out.println("Введите номер телефона для абонента " + input);
                     String phone = scanner.nextLine();
                     phoneBook.addContact(phone, input);
                     continue;
                 } else {
-                    System.out.println("Имени " + input + " соответствует телефон " + phoneBook.phoneBookLists.get(input));
+                    System.out.println("Имени " + input + " соответствует телефон " + phoneBook.getPhoneBookLists().get(input));
                     continue;
                 }
 

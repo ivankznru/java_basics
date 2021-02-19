@@ -5,14 +5,16 @@ import java.util.regex.Pattern;
 
 public class PhoneBook {
 
-    private static String nameString = "^[А-Яа-яёЁ]+";
-    private static String phoneString = "^[7][9][0-9]{9}";
-    TreeMap<String, String> phoneBookLists = new TreeMap<>();
-    TreeSet<String> phonesByName = new TreeSet<>();
-   // HashSet<String> allContacts = new HashSet<>();
-    Set<String> allContacts= new TreeSet<>();
+    private static final String NAME_STRING = "^[А-Яа-яёЁ -]+";
+    private static final String PHONE_STRING = "^[7][9][0-9]{9}";
+
+    private TreeMap<String, String> phoneBookLists = new TreeMap<>();
+    private TreeSet<String> phonesByName = new TreeSet<>();
+    private Set<String> allContacts= new TreeSet<>();
 
     public PhoneBook (){};
+
+
 
 
     public void addContact(String phone, String name) {
@@ -94,14 +96,14 @@ public class PhoneBook {
         return allContacts;
     }
     public static boolean isCorrectPhone(String phone) {
-        if (phone.length() == 11 & Pattern.matches(phoneString,phone)) {
+        if (phone.length() == 11 & Pattern.matches(PHONE_STRING,phone)) {
             return true;
         } else {
          return false;
         }
     }
     public static boolean isCorrectName (String name) {
-        if ( Pattern.matches(nameString,name)) {
+        if ( Pattern.matches(NAME_STRING,name)) {
             return true;
         } else {
           return false;
@@ -133,4 +135,5 @@ public class PhoneBook {
       return isPhoneExist;
     }
 
+    public TreeMap<String, String> getPhoneBookLists(){ return phoneBookLists;}
 }
