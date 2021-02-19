@@ -1,17 +1,13 @@
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
+
 
 public class Main {
 
-    private static PhoneBook phoneBookLists = new PhoneBook();
-    private static boolean error = true;
-    private static final String INVALID_INPUT ="Неверный формат ввода";
-
 
     public static void main(String[] args) {
-        PhoneBook person = new PhoneBook();
 
+
+        PhoneBook phoneBook = new PhoneBook();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -24,38 +20,66 @@ public class Main {
             input.trim();
 
 
-            if (input.matches("^[7][9][0-9]{9}")) {error=false;
-                if (!phoneBookLists.equals(input)){
-                System.out.println("Такого номера в телефонной книге нет");
-                System.out.println("Введите имя абонента для номера " +  input);
-                String name = scanner.nextLine();
+            if (PhoneBook.isCorrectPhone(input)) {
 
-                person.addContact(input,name);
+                if (phoneBook.getAllContacts().isEmpty()) {
+                    System.out.println("Телефонная книга пуста");
+                    System.out.println("Введите имя абонента для номера " + input);
+                    String name = scanner.nextLine();
+                    phoneBook.addContact(input, name);
+                    continue;
                 }
-               else {person.getNameByPhone(input);}
+
+                if (!PhoneBook.isPhoneExist(phoneBook.phoneBookLists, input)) {
+
+                    System.out.println("Такого номера в телефонной книге нет");
+                    System.out.println("Введите имя абонента для номера " + input);
+                    String name = scanner.nextLine();
+                    if (phoneBook.phoneBookLists.containsKey(name)) {
+
+                        phoneBook.phoneBookLists.put(name, phoneBook.phoneBookLists.get(name) + "," + input);
+                        System.out.println("К абоненту " + name + ": добавлен телефон: " + input);
+                        continue;
+                    } else {
+                        phoneBook.addContact(input, name);
+                        continue;
+                    }
+                }
+                // Телефон существует
+                else {
+                    System.out.println("Такой номер существует ");
+                    System.out.println("Введите имя абонента для перезаписи " + input);
+                    String name = scanner.nextLine();
+                }
 
             }
 
-            // формат одного контакта "Имя - Телефон"
-            // если контакт не найдены - вернуть пустую строку
 
-            if (input.matches("^[А-Яа-я]+")) {error=false;
-                if (!phoneBookLists.getAllContacts().contains(input));
-                    System.out.println(phoneBookLists.getAllContacts()) ;
-                System.out.println("Такого имени в телефонной книге нет.");
-                System.out.println("Введите номер телефона для абонента " + input);
-                String phone = scanner.nextLine();
+            if (PhoneBook.isCorrectName(input)) {
 
-               person.addContact(phone,input);
+
+                if (phoneBook.getAllContacts().isEmpty() | (!phoneBook.phoneBookLists.containsKey(input))) {
+                    System.out.println("Такого имени в телефонной книге нет.");
+                    System.out.println("Введите номер телефона для абонента " + input);
+                    String phone = scanner.nextLine();
+                    phoneBook.addContact(phone, input);
+                    continue;
+                } else {
+                    System.out.println("Имени " + input + " соответствует телефон " + phoneBook.phoneBookLists.get(input));
+                    continue;
+                }
+
 
             }
-            else {person.getPhonesByName(input);}
 
 
-            if (input.matches("^LIST")) { error=false;
-                System.out.println(person.getAllContacts());
+            if (input.matches("^LIST")) {
+
+                System.out.println(phoneBook.getAllContacts().toString());
+                continue;
             }
-            if(error) {      System.out.println(INVALID_INPUT);}
+
         }
     }
 }
+

@@ -63,7 +63,7 @@ class PhoneBookTest {
     void addingContactByName() {
         phoneBook.addContact("79001234567", "Маша");
         phoneBook.addContact("79991234567", "Миша");
-        Set<String> expected = Set.of("Маша - 79001234567", "Миша - 79991234567");
+       Set<String> expected = Set.of("Маша - 79001234567", "Миша - 79991234567");
         assertEquals(expected, phoneBook.getAllContacts());
     }
 
