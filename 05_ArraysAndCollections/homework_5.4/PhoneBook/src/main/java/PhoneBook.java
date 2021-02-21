@@ -10,18 +10,19 @@ public class PhoneBook {
 
     private TreeMap<String, String> phoneBookLists = new TreeMap<>();
     private TreeSet<String> phonesByName = new TreeSet<>();
-    private Set<String> allContacts= new TreeSet<>();
+    private Set<String> allContacts = new TreeSet<>();
 
-    public PhoneBook (){};
+    public PhoneBook() {
+    }
 
-
+    ;
 
 
     public void addContact(String phone, String name) {
 
-        if (isCorrectName(name) & isCorrectPhone(phone) ) {
+        if (isCorrectName(name) & isCorrectPhone(phone)) {
 
-            if (isPhoneExist(phoneBookLists,phone)) {
+            if (isPhoneExist(phone)) {
 
                 for (Map.Entry<String, String> entry : phoneBookLists.entrySet()) {
                     if (Objects.equals(phone, entry.getValue())) {
@@ -36,27 +37,28 @@ public class PhoneBook {
                 System.out.println("Контакт добавлен");
 
             }
+        } else {
+            System.out.println("Контакт не добавлен");
         }
-        else {System.out.println ("Контакт не добавлен");}
     }
 
 
     public String getNameByPhone(String phone) {
-        String nameByPhone ="";
+        String nameByPhone = "";
         //   получить ключ от значения
         //  one-to-one
         Pattern phoneValue = Pattern.compile(phone);
         for (String key : phoneBookLists.keySet()) {
 
-             System.out.println(key + " - " + phoneBookLists.get(key));
+            System.out.println(key + " - " + phoneBookLists.get(key));
             Matcher matcherPhone = phoneValue.matcher(phoneBookLists.get(key));
-            if (matcherPhone.find()){
-           System.out.println ("Соответствие найдено "+ key + " - " + phoneBookLists.get(key));
+            if (matcherPhone.find()) {
+                System.out.println("Соответствие найдено " + key + " - " + phoneBookLists.get(key));
                 return key + " - " + phoneBookLists.get(key);
             }
 
         }
-        return  nameByPhone;
+        return nameByPhone;
     }
 
 
@@ -67,7 +69,7 @@ public class PhoneBook {
         for (String key : phoneBookLists.keySet()) {
             if (phoneBookLists.containsKey(name)) {
                 //   phonesByName = Collections.singleton(name + " - " + phoneBookLists.get(name));
-                phonesByName= new TreeSet(Set.of(name + " - " + phoneBookLists.get(name)));
+                phonesByName = new TreeSet(Set.of(name + " - " + phoneBookLists.get(name)));
             } else {
                 return null;
             }
@@ -85,28 +87,31 @@ public class PhoneBook {
 
 
             if (a.equals("")) {
-               allContacts = Set.of((a = a + key + " - " + phoneBookLists.get(key)));;
-             //   allContacts  =Set.of( String.format("%s -  %d", key,phoneBookLists.get(key)));
-        } else {
-              allContacts = Set.of(a = a + ", " + key + " - " + phoneBookLists.get(key));
-           }
+                allContacts = Set.of((a = a + key + " - " + phoneBookLists.get(key)));
+                ;
+                //   allContacts  =Set.of( String.format("%s -  %d", key,phoneBookLists.get(key)));
+            } else {
+                allContacts = Set.of(a = a + ", " + key + " - " + phoneBookLists.get(key));
+            }
 
         }
 
         return allContacts;
     }
+
     public static boolean isCorrectPhone(String phone) {
-        if (phone.length() == 11 & Pattern.matches(PHONE_STRING,phone)) {
+        if (phone.length() == 11 & Pattern.matches(PHONE_STRING, phone)) {
             return true;
         } else {
-         return false;
+            return false;
         }
     }
-    public static boolean isCorrectName (String name) {
-        if ( Pattern.matches(NAME_STRING,name)) {
+
+    public static boolean isCorrectName(String name) {
+        if (Pattern.matches(NAME_STRING, name)) {
             return true;
         } else {
-          return false;
+            return false;
         }
     }
 
@@ -115,25 +120,40 @@ public class PhoneBook {
             System.out.println(key + " - " + map.get(key));
         }
     }
-    public static boolean isPhoneExist (TreeMap<String, String> map, String phone){
+
+    public boolean isPhoneExist(String phone) {
 
         // (phone-) 79000000001
         //matcherPhone.find()----------
         //                            |
         // (Миша-)   79000000000,79000000001,79000000002
-       boolean isPhoneExist = false;
+        boolean isPhoneExist = false;
         Pattern phoneValue = Pattern.compile(phone);
-        for (String key : map.keySet()) {
+        for (String key : phoneBookLists.keySet()) {
             //   System.out.println(key + " - " + phoneBook.phoneBookLists.get(key));
-            Matcher matcherPhone = phoneValue.matcher(map.get(key));
-            if (matcherPhone.find()){
-                System.out.println ("Соответствие найдено "+ key + " - " + map.get(key));
-                isPhoneExist =true;
+            Matcher matcherPhone = phoneValue.matcher(phoneBookLists.get(key));
+            if (matcherPhone.find()) {
+                System.out.println("Соответствие найдено " + key + " - " + phoneBookLists.get(key));
+                isPhoneExist = true;
+            } else {
+                isPhoneExist = false;
             }
-            else{isPhoneExist =false;}
         }
-      return isPhoneExist;
+        return isPhoneExist;
     }
 
-    public TreeMap<String, String> getPhoneBookLists(){ return phoneBookLists;}
+    // public TreeMap<String, String> getPhoneBookLists(){ return phoneBookLists;}
+
+    public boolean isNameExist(String name) {
+
+        if (phoneBookLists.containsKey(name)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void addPhoneToName(String name, String phone) {
+        phoneBookLists.put(name, phoneBookLists.get(name) + "," + phone);
+    }
 }
