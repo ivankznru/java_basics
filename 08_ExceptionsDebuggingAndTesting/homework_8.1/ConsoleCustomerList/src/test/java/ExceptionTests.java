@@ -41,6 +41,15 @@ public class ExceptionTests {
         assertThrows(Throwable.class, () -> storage.addCustomer(input),
                 "Не выброшено исключение при неверном формате email -> " + wrongEmail);
     }
+    @Test
+    @DisplayName("Неверный формат имени")
+    void wrongNameFormatWithoutLetters() {
+        final String wrongName = "111111 1111111 ";
+        final String input = wrongName + "vasily.petrov@gmail.com +79215637722";
+
+        assertThrows(Throwable.class, () -> storage.addCustomer(input),
+                "Не выброшено исключение при неверном формате имени -> " + wrongName);
+    }
 
     @Test
     @DisplayName("Неверный формат номера")
