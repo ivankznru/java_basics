@@ -97,6 +97,8 @@ public class RouteCalculator {
                 }
             }
         }
+        // если маршрут не найден, то возвращаем null и переходим к следующему методу
+        if (route.size() == 0) return null;
         return route;
     }
 
