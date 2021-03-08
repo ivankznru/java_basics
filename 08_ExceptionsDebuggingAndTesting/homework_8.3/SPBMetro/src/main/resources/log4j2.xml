@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <File name="Search" fileName="logs/search.log" immediateFlush="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss} %msg%n"/>
+            <Filters>
+                <MarkerFilter marker="EXIST_STATION"/>
+            </Filters>
+        </File>
+
+        <File name="InputErrors" fileName="logs/input_errors.log" immediateFlush="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss} %msg%n"/>
+            <Filters>
+                <MarkerFilter marker="INPUT_ERRORS"/>
+            </Filters>
+        </File>
+
+        <File name="Errors" fileName="logs/exceptions.log" immediateFlush="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Errors" level="error"/>
+            <appender-ref ref="Search" level="info"/>
+            <appender-ref ref="InputErrors" level="info"/>
+        </root>
+    </loggers>
+</configuration>
