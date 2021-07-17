@@ -1,16 +1,16 @@
 $(function(){
     const appendTask = function(data){
-      var taskCode = '<div class="cell-icon"> <a href="#" class="task-delete" data-id="' + data.id + '"> <img src="/img/deleteIcon.png" width="20px" height="20px" alt="удалить"></a></div>';
+      var taskCode = '<div class="cell-icon"> <a href="#" class="task-delete" data-id="' + data.id + '"> <img src="img/deleteIcon.png" width="20px" height="20px" alt="удалить"></a></div>';
 
         if (data.done == true) {
             var cellFirst = ' <div class="cell"><input type="checkbox" data-id="' + data.id + '" checked>' +
                 '<a href="#" class="task-link" data-id="' + data.id + '">' + data.name + '</a>' +
-                '<a href="#" class="task-put" data-id="' + data.id + '" data-name="' + data.name + '" data-desc="' + data.description + '"> <img src="/img/change.png" width="20px" height="20px" alt="изменить"></a></div> ';
+                '<a href="#" class="task-put" data-id="' + data.id + '" data-name="' + data.name + '" data-desc="' + data.description + '"> <img src="img/change.png" width="20px" height="20px" alt="изменить"></a></div> ';
             $('#task-list').append('<div class="line-done" data-id="' + data.id + '">' + cellFirst + taskCode + '</div>');
         } else {
           var cellFirst = ' <div class="cell"><input type="checkbox" data-id="' + data.id + '" >' +
                 '<a href="#" class="task-link" data-id="' + data.id + '">' + data.name + '</a>' +
-                '<a href="#" class="task-put" data-id="' + data.id + '" data-name="' + data.name + '" data-desc="' + data.description + '"> <img src="/img/change.png" width="20px" height="20px" alt="изменить"></a></div> ';
+                '<a href="#" class="task-put" data-id="' + data.id + '" data-name="' + data.name + '" data-desc="' + data.description + '"> <img src="img/change.png" width="20px" height="20px" alt="изменить"></a></div> ';
             $('#task-list').append('<div class="line" data-id="' + data.id + '">' + cellFirst + taskCode + '</div>');
         }
     };
